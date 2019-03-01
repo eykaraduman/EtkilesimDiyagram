@@ -1,16 +1,5 @@
 # Karşılıklı Etkileşim Diyagramı Hazırlanması
 
----
-classes: wide
-title: Karşılıklı Etkileşim Diyagramı Hazırlanması
-excerpt: "Dikdötgen kesitli bir betonarme elemanın, TS-500'e göre karşılıklı etkileşim diyagramı, kontrol noktalarındaki gerilmelerin hesaplanmasıyla kolayca hazırlanabilir. Dikdörtgen bir kesit için birim şekil değiştirme ve gerilmeler \varepsilon_{cu}=0.003 için Şekil-1'de gösterilmiştir."
-published: true
-mathjax: true
-categories:
-  - Betonarme
-tags:
-  - C&num;
----
 Dikdötgen kesitli bir betonarme elemanın, TS-500'e göre karşılıklı etkileşim diyagramı, kontrol noktalarındaki gerilmelerin hesaplanmasıyla kolayca hazırlanabilir. Dikdörtgen bir kesit için birim şekil değiştirme ve gerilmeler $$\varepsilon_{cu}=0.003$$ için Şekil-1'de gösterilmiştir.
 
 {% capture fig_img %}
