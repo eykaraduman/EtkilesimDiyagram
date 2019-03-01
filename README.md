@@ -6,6 +6,6 @@ Dikdötgen kesitli kolonların, TS-500 ve ACI-318 için karşılıklı etkileşi
 - Kesit, donatı ve yük bilgisi girişi
 - Png ya da pdf olarak rapor hazırlanması
 
-![Uygulama Görüntü](https://eykaraduman.github.io/assets/images/KedSekil3.png)
+![Uygulama Görüntü](https://eykaraduman.github.io/assets/images/KedSekil3.png | width=100)
 
 
