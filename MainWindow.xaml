@@ -1,0 +1,139 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EtkilesimDiyagram"
+        x:Class="EtkilesimDiyagram.MainWindow"
+        mc:Ignorable="d"
+        Title="Karşılıklı Etkileşim Diyagram" Height="450" Width="900" Loaded="Window_Loaded" Icon="Images/AppProject.ico">
+    <Window.DataContext>
+        <local:AppFileTemplate />
+        <!--<local:MainViewModel/>-->
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="12*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu Name="menu" Grid.ColumnSpan="3" BorderBrush="#FFABADB3" BorderThickness="1.0">
+                <MenuItem x:Name="mDosya" Header="_Dosya">
+                <MenuItem x:Name="mDosyaYeni" Header="_Yeni" Click="mDosyaYeni_Click" />
+                <MenuItem x:Name="mDosyaAc" Header="_Aç" Click="mDosyaAc_Click" />
+                <MenuItem x:Name="mDosyaKaydet" Header="_Kaydet" Click="mDosyaKaydet_Click" />
+                <MenuItem x:Name="mDosyaFarkliKaydet" Header="_Farklı Kaydet" Click="mDosyaFarkliKaydet_Click" />
+                <Separator />
+                <MenuItem x:Name="mCikis" Header="_Çıkış" Click="mCikis_Click" />
+            </MenuItem>
+            
+            <MenuItem Header="_Veri">
+                <MenuItem x:Name="menuGenelBilgi" Header="_Genel Bilgi" Click="menuGenelBilgi_Click" />
+                <MenuItem x:Name="menuMalzeme" Header="_Malzeme" Click="menuMalzeme_Click" />
+                <MenuItem x:Name="menuKapasiteAzaltma" Header="_Kapasite Azaltma" Click="menuKapasiteAzaltma_Click" />
+                <Separator />
+                <MenuItem x:Name="menuKesit" Header="_Kesit" Click="menuKesit_Click" />
+                <MenuItem x:Name="menuDonati" Header="_Donatı" Click="menuDonati_Click" />
+                <MenuItem x:Name="menuYukler" Header="_Yükler" Click="menuYukler_Click" />
+            </MenuItem>
+            <MenuItem Header="_Çöz">
+                <MenuItem x:Name="menuHesapla" Header="_Hesapla" Click="menuHesapla_Click" />
+                <Separator />
+                <MenuItem x:Name="menuShowNominalDiyagram" Header="_Nominal Diyagram" IsCheckable="True" IsChecked="{Binding ShowNominalDiagram, Mode=TwoWay}"/>
+            </MenuItem>
+            <MenuItem Header="_Görünüm">
+                <MenuItem x:Name="menuShowFullDiagram" Header="_N-M Diyagram - Tam" IsCheckable="True" IsChecked="{Binding ShowAllDiagram, Mode=TwoWay}" Click="menuShowFullDiagram_Click" StaysOpenOnClick="True"/>
+                <MenuItem x:Name="menuShowRightDiagram" Header="_N-M Diyagram - M pozitif" IsCheckable="True" IsChecked="{Binding ShowRightDiagram, Mode=TwoWay}" Click="menuShowRightDiagram_Click" StaysOpenOnClick="True" />
+                <MenuItem x:Name="menuShowLeftDiagram" Header="_N-M Diyagram - M negatif" IsCheckable="True" IsChecked="{Binding ShowLeftDiagram, Mode=TwoWay}" Click="menuShowLeftDiagram_Click" StaysOpenOnClick="True"/>
+                <Separator />
+                <MenuItem x:Name="menuShowGridLines" Header="_Izgara" IsCheckable="True" IsChecked="{Binding ShowGridLines, Mode=TwoWay}" StaysOpenOnClick="True"/>
+                <MenuItem x:Name="menuShowTitle" Header="_Başlık - Altbaşlık" IsCheckable="True" IsChecked="{Binding ShowTitle, Mode=TwoWay}" StaysOpenOnClick="True"/>
+                <Separator />
+                <MenuItem x:Name="menuShowLoads" Header="_Yükler" IsCheckable="True" IsChecked="{Binding ShowLoads, Mode=TwoWay}" StaysOpenOnClick="True"/>
+            
+            </MenuItem>
+            <MenuItem Header="_Rapor">
+                <MenuItem x:Name="menuCopyClipboard" Header="*.png olarak panoya kopyala" Click="menuCopyClipboard_Click"/>
+                <MenuItem x:Name="menuSaveAsPng" Header="*.png olarak kaydet" Click="menuSaveAsPng_Click"/>
+                <Separator />
+                <!--<MenuItem x:Name="menuSaveAsPdf" Header="_Diyagramı *.pdf olarak kaydet" Click="menuSaveAsPdf_Click"/>-->
+                <MenuItem x:Name="menuCreatePdfReport" Header="*.pdf olarak kaydet" Click="menuCreatePdfReport_Click"/>
+                <MenuItem x:Name="menuCreateMNReport" Header="M-N değerleri" Click="menuCreateMNReport_Click"/>
+            </MenuItem>
+        </Menu>
+        <ToolBar Grid.Row="1" Grid.ColumnSpan="3" Background="#FFF0F0F0" BorderBrush="#FFABADB3" ToolBarTray.IsLocked="True" Margin="-5,0,-15,0" Padding="5,0,0,0">
+            <Button Click="mDosyaYeni_Click" ToolTip="Yeni dosya" >
+                <Image Source="/EtkilesimDiyagram;component/Images/new.png" Width="16" Height="16" />
+            </Button>
+            <Button Click="mDosyaAc_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/open.png" Width="16" Height="16" ToolTip="Dosya aç" />
+            </Button>
+            <Button Click="mDosyaKaydet_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/save.png" Width="16" Height="16" ToolTip="Dosyayı kaydet" />
+            </Button>
+            <Button Click="mDosyaFarkliKaydet_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/saveas.png" Width="13" Height="13" ToolTip="Dosyayı farklı kaydet" />
+            </Button>
+            <Separator></Separator>
+            <Button Click="menuGenelBilgi_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/info.png" Width="16" Height="16" ToolTip="Genel bilgi" />
+            </Button>
+            <Button Click="menuMalzeme_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/material.png" Width="16" Height="16" ToolTip="Malzeme" />
+            </Button>
+            <Button Click="menuKapasiteAzaltma_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/phi.png" Width="16" Height="16" ToolTip="Kapasite azaltma katsayıları" />
+            </Button>
+            <Separator></Separator>
+            <Button Click="menuKesit_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/section.png" Width="16" Height="16" ToolTip="Kesit" />
+            </Button>
+            <Button Click="menuDonati_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/reinforcement.png" Width="16" Height="16" ToolTip="Donatı" />
+            </Button>
+            <Button Click="menuYukler_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/loads.png" Width="16" Height="16" ToolTip="Yükler" />
+            </Button>
+            <Separator></Separator>
+            <ToggleButton  x:Name="toolbarShowFullDiagram" IsChecked="{Binding ShowAllDiagram, Mode=TwoWay}" Click="toolbarShowFullDiagram_Click">
+                <Image Source="/EtkilesimDiyagram;component/Images/interactall.png" Width="16" Height="16" ToolTip="Çöz" />
+            </ToggleButton>
+            <ToggleButton  x:Name="toolbarShowLeftDiagram" IsChecked="{Binding ShowLeftDiagram, Mode=TwoWay}" Click="toolbarShowLeftDiagram_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/interactneg.png" Width="16" Height="16" ToolTip="Çöz" />
+            </ToggleButton>
+            <ToggleButton  x:Name="toolbarShowRightDiagram" IsChecked="{Binding ShowRightDiagram, Mode=TwoWay}" Click="toolbarShowRightDiagram_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/interactpoz.png" Width="16" Height="16" ToolTip="Çöz" />
+            </ToggleButton>
+            
+            <Separator></Separator>
+            <Button Click="menuHesapla_Click" >
+                <Image Source="/EtkilesimDiyagram;component/Images/calculate.png" Width="16" Height="16" ToolTip="Çöz" />
+            </Button>
+            <!--<ToggleButton  IsEnabled="True" IsChecked="{Binding ShowNominalDiagram, Mode=TwoWay}">Timeout</ToggleButton>-->
+        </ToolBar>
+        <RichTextBox Name="infoBox" Grid.Row="2" Grid.RowSpan="3" IsReadOnly="True" MinWidth="0">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0" />
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+        <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="1" ResizeBehavior="PreviousAndNext" Width="3" Background="#FFABADB3" Grid.Row="2" Grid.RowSpan="3"/>
+        <oxy:PlotView  x:Name="PlotView" Model="{Binding Model}" Grid.Column="2" Grid.RowSpan="3" Grid.Row="2" BorderBrush="#FFABADB3" BorderThickness="1.0"/>
+        <StatusBar DockPanel.Dock="Bottom" Grid.Row="5" Grid.ColumnSpan="3">
+            <StatusBarItem>
+                <TextBlock Name="sbFileName" />
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

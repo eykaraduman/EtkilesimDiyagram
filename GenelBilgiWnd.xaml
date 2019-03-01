@@ -1,0 +1,62 @@
+﻿<Window x:Class="EtkilesimDiyagram.GenelBilgiWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:EtkilesimDiyagram"
+        xmlns:rc="clr-namespace:RcDesign;assembly=RcDesign"
+        mc:Ignorable="d"
+        Title="Genel Bilgi" Height="220" Width="450" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+    <Window.DataContext>
+        <local:AppFileTemplate />
+    </Window.DataContext>
+    <Window.Resources>
+        <ObjectDataProvider x:Key="designCodeFromEnum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="rc:DesignCodes"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "Auto" MinHeight="30" />
+            <RowDefinition Height = "Auto"  MinHeight="30"/>
+            <RowDefinition Height = "Auto"  MinHeight="30" />
+            <RowDefinition Height = "Auto"  MinHeight="30" />
+            <RowDefinition Height = "Auto"  MinHeight="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width = "Auto" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column = "0" Grid.Row = "0" Orientation = "Horizontal" Width="Auto" HorizontalAlignment="Stretch">
+            <Label Content = "Tasarım Kodu:" HorizontalAlignment="Right" VerticalAlignment = "Center" Width = "120" Margin="5,0,0,0"/>
+            <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150" ItemsSource="{Binding Source={StaticResource designCodeFromEnum}}" SelectedItem="{Binding Code, Mode=TwoWay}"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Column = "0" Grid.Row = "1" Orientation = "Horizontal" Width="Auto" HorizontalAlignment="Stretch">
+            <Label Content = "Rapor Başlık:" HorizontalAlignment="Right" VerticalAlignment = "Center" Width = "120" Margin="5,0,0,0"/>
+            <TextBox  Name = "txtRaporBaslik" Text="{Binding ReportTitle, Mode=TwoWay}" VerticalAlignment = "Center" Width = "300" Margin="0,0,5,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column = "0" Grid.Row = "2" Orientation = "Horizontal" Width="Auto" HorizontalAlignment="Stretch">
+            <Label Content = "Diagram Başlık:" HorizontalAlignment="Right" VerticalAlignment = "Center" Width = "120" Margin="5,0,0,0"/>
+            <TextBox  Name = "txtDiagramBaslik" Text="{Binding Title, Mode=TwoWay}" VerticalAlignment = "Center" Width = "300" Margin="0,0,5,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column = "0" Grid.Row = "3" Orientation = "Horizontal" Width="Auto" HorizontalAlignment="Stretch">
+            <Label Content = "Diagram Altbaşlık:"  HorizontalAlignment="Right" VerticalAlignment = "Center" Width = "120" Margin="5,0,0,0"/>
+            <TextBox  Name = "txtDiagramAltBaslik" Text="{Binding SubTitle, Mode=TwoWay}" VerticalAlignment = "Center" Width = "300" Margin="0,0,5,0"/>
+        </StackPanel>
+        <StackPanel Grid.Column = "0" Grid.Row = "4" Orientation = "Horizontal" Width="Auto" HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="10,10,10,10"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Name="bTamam" IsDefault="True" Content="Tamam" MinWidth="70" Click="bTamam_Click"></Button>
+            <Button x:Name="bCikis" IsCancel="True" Content="İptal" MinWidth="70" Click="bCikis_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

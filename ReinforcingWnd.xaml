@@ -1,0 +1,38 @@
+﻿<Window x:Class="EtkilesimDiyagram.ReinforcingWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EtkilesimDiyagram"
+        mc:Ignorable="d"
+        Title="Donatı" Height="270" Width="200" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+    <Window.DataContext>
+        <local:AppFileTemplate />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "Auto" />
+            <RowDefinition Height = "Auto"  MinHeight="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width = "Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Margin="0,0,-11,0" >
+            <DataGrid x:Name="reBarsGrid" AutoGenerateColumns="False" ItemsSource="{Binding ReinforcingBars, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="200" Margin="10,0,23,0" CanUserReorderColumns="False" CanUserResizeColumns="False" MinColumnWidth="50">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="di (cm)" Binding="{Binding di}"/>
+                    <DataGridTextColumn Header="As (cm²)" Binding="{Binding As}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel Grid.Column = "0" Grid.Row = "1" Orientation = "Horizontal" Width="192" HorizontalAlignment="Right" Margin="0,0,-9,0">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="10,10,10,10"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Name="bTamam" IsDefault="True" Content="Tamam" MinWidth="70" Click="bTamam_Click"></Button>
+            <Button x:Name="bCikis" IsCancel="True" Content="İptal" MinWidth="70" Click="bCikis_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>
