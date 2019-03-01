@@ -5,7 +5,7 @@ Dikdötgen kesitli kolonların, TS-500 ve ACI-318 için karşılıklı etkileşi
 - Malzeme parametrelerinin, kapasite azaltma katsayılarının tanımlanması
 - Kesit, donatı ve yük bilgisi girişi
 - Png ya da pdf olarak rapor hazırlanması
-
+<img src="https://camo.githubusercontent.com/..." data-canonical-src="https://eykaraduman.github.io/assets/images/KedSekil3.png" width="200" />
 ![Uygulama Görüntü](https://eykaraduman.github.io/assets/images/KedSekil3.png | width=100)
 
 
