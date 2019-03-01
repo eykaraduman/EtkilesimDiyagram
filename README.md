@@ -1,7 +1,7 @@
 # Karşılıklı Etkileşim Diyagramı Hazırlanması
 
-Dikdötgen kesitli bir betonarme elemanın, TS-500'e göre karşılıklı etkileşim diyagramı, kontrol noktalarındaki gerilmelerin hesaplanmasıyla kolayca hazırlanabilir. Dikdörtgen bir kesit için birim şekil değiştirme ve gerilmeler $$\varepsilon_{cu}=0.003$$ için Şekil-1'de gösterilmiştir.
-![Image of Yaktocat](https://eykaraduman.github.io/assets/images/KedSekil1.png)
+Dikdötgen kesitli bir betonarme elemanın, TS-500 ve ACI-318 içim karşılıklı etkileşim diyagramını hazırlanması için tasarlanmıştır., kontrol noktalarındaki gerilmelerin hesaplanmasıyla kolayca hazırlanabilir.
+![Uygulama Görüntü](https://eykaraduman.github.io/assets/images/KedSekil3.png =500px)
 
 {% capture fig_img %}
 ![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/KedSekil1.png)
